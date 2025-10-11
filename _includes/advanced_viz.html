@@ -1,0 +1,76 @@
+<!-- Dropdowns -->
+<select id="seasonSelect">
+  <option value="2016">2016</option>
+  <option value="2017">2017</option>
+  <option value="2018">2018</option>
+  <option value="2019">2019</option>
+  <option value="2020">2020</option>
+</select>
+
+<select id="teamSelect">
+  <option value="anaheim_ducks">Anaheim Ducks</option>
+  <option value="arizona_coyotes">Arizona Coyotes</option>
+  <option value="boston_bruins">Boston Bruins</option>
+  <option value="buffalo_sabres">Buffalo Sabres</option>
+  <option value="calgary_flames">Calgary Flames</option>
+  <option value="carolina_hurricanes">Carolina Hurricanes</option>
+  <option value="chicago_blackhawks">Chicago Blackhawks</option>
+  <option value="colorado_avalanche">Colorado Avalanche</option>
+  <option value="columbus_blue_jackets">Columbus Blue Jackets</option>
+  <option value="dallas_stars">Dallas Stars</option>
+  <option value="detroit_red_wings">Detroit Red Wings</option>
+  <option value="edmonton_oilers">Edmonton Oilers</option>
+  <option value="florida_panthers">Florida Panthers</option>
+  <option value="los_angeles_kings">Los Angeles Kings</option>
+  <option value="minnesota_wild">Minnesota Wild</option>
+  <option value="montreal_canadiens">Montréal Canadiens</option>
+  <option value="nashville_predators">Nashville Predators</option>
+  <option value="new_jersey_devils">New Jersey Devils</option>
+  <option value="new_york_islanders">New York Islanders</option>
+  <option value="new_york_rangers">New York Rangers</option>
+  <option value="ottawa_senators">Ottawa Senators</option>
+  <option value="philadelphia_flyers">Philadelphia Flyers</option>
+  <option value="pittsburgh_penguins">Pittsburgh Penguins</option>
+  <option value="san_jose_sharks">San Jose Sharks</option>
+  <option value="seattle_kraken">Seattle Kraken</option>
+  <option value="st_louis_blues">St. Louis Blues</option>
+  <option value="tampa_bay_lightning">Tampa Bay Lightning</option>
+  <option value="toronto_maple_leafs">Toronto Maple Leafs</option>
+  <option value="vancouver_canucks">Vancouver Canucks</option>
+  <option value="vegas_golden_knights">Vegas Golden Knights</option>
+  <option value="winnipeg_jets">Winnipeg Jets</option>
+</select>
+
+<div id="content"></div>
+
+<script>
+  const seasonSelect = document.getElementById('seasonSelect');
+  const teamSelect = document.getElementById('teamSelect');
+  const content = document.getElementById('content');
+
+  function loadHTML() {
+    const season = seasonSelect.value;
+    const team = teamSelect.value;
+
+    // Relative path to shotmaps folder
+    const fileName = `public/shotmaps/${team}_${season}.html`;
+
+    fetch(fileName)
+      .then(response => {
+        if (!response.ok) throw new Error('File not found: ' + fileName);
+        return response.text();
+      })
+      .then(html => {
+        content.innerHTML = html;
+      })
+      .catch(error => {
+        content.innerHTML = `This team did not play in the ${season}-${season+1} season.`;
+      });
+  }
+
+  seasonSelect.addEventListener('change', loadHTML);
+  teamSelect.addEventListener('change', loadHTML);
+
+  // Load initial content
+  loadHTML();
+</script>
