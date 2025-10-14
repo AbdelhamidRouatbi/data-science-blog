@@ -1,0 +1,17 @@
+<button onclick="toggleText()">Toggle details</button>
+<p id="viz_explain" style="display: none;white-space:pre-wrap;">
+We implemented a class that generates smoothed heatmaps of excess shot rates on an NHL rink. The class can be configured with a number of bins and a smoothing factor. The bins divide each axis into a specified number of segments, creating n² regions in total. For each region, we calculate the excess shot rate per hour. Next, we create a finer grid by subdividing each region according to the smoothing factor and apply a Gaussian kernel with a parameterized variance to compute smoothed shot rates on this finer grid. Finally, we use interpolation to match the dimensions of the NHL rink image and overlay the rink image (after removing its background) onto the heatmap to produce the final visualization.
+
+We experimented with the parameters to achieve a balance between figure clarity, smoothness, and computation time. We found that the best results were obtained with 10 initial bins, a smoothing factor of 10, and a Gaussian variance of 0.12.
+</p>
+
+<script>
+  function toggleText() {
+    const text = document.getElementById("viz_explain");
+    if (text.style.display === "none") {
+      text.style.display = "block";
+    } else {
+      text.style.display = "none";
+    }
+  }
+</script>
