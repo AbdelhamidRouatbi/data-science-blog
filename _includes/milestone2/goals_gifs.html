@@ -1,0 +1,38 @@
+<style>
+.gif-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  margin-top: 20px;
+  flex-wrap: nowrap; /* keep one line */
+}
+
+.gif-box {
+  text-align: center;
+  flex: 1 1 0;
+  max-width: 300px;
+}
+
+.gif-label {
+  margin-bottom: 8px;
+}
+</style>
+
+<div class="gif-row">
+  <div class="gif-box">
+    <div class="gif-label">Goal 1</div>
+    <img src="{{ '/public/gifs/goal_1.gif' | relative_url }}" alt="Goal 1" width="280">
+  </div>
+
+  <div class="gif-box">
+    <div class="gif-label">Goal 2</div>
+    <img src="{{ '/public/gifs/goal_2.gif' | relative_url }}" alt="Goal 2" width="280">
+  </div>
+
+  <div class="gif-box">
+    <div class="gif-label">Goal 3</div>
+    <img src="{{ '/public/gifs/goal_3.gif' | relative_url }}" alt="Goal 3" width="280">
+  </div>
+</div>
+
